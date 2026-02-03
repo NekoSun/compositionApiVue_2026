@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "My awecome title",
+      "content": "Some Content"
+    },
+    {
+      "id": "2",
+      "title": "My awecome title 2",
+      "content": "Some Content 2"
+    } 
+  ]
+}
