@@ -17,7 +17,7 @@
     </div>
     <div class="md-4">
       <a
-        @click.prevent="storePost"
+        @click.prevent="updatePost"
         href="#"
         class="inline-block px-3 py-2 bg-sky-600 border border-sky-700 text-white"
       >STORE POST</a>
@@ -26,35 +26,57 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
+import { useRoute } from 'vue-router';
 
 interface Post {
+  id: number | null
   title: string
   content: string
 };
 
 defineOptions({
-  name: 'Crete'
+  name: 'Edit'
 })
 
-const post: Post = reactive({
+onMounted(() => {
+  getPost()
+})
+
+const post = reactive<Post>({
+  id: null,
   title: '',
   content: ''
-});
+})
 
-const storePost = function () {
-  fetch('http://localhost:3000/posts', {
+const route = useRoute();
+
+const getPost = function () {
+  fetch(`http://localhost:3000/posts/${route.params.id}`, {
+    method: 'get',
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+    .then(res => {
+      return res.json()
+    })
+    .then((data) => {
+      Object.assign(post, data);
+    })
+    .catch()
+    .finally()
+}
+
+const updatePost = function () {
+  fetch(`http://localhost:3000/posts/${route.params.id}`, {
     method: 'post',
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ ...post }),
-  },)
-    .then((res) => {
-      console.log(res);
-
-    })
-};
+  })
+}
 </script>
 
 <style scoped lang="scss"></style>
