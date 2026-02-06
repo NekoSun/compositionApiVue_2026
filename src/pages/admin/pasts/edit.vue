@@ -20,7 +20,7 @@
         @click.prevent="updatePost"
         href="#"
         class="inline-block px-3 py-2 bg-sky-600 border border-sky-700 text-white"
-      >STORE POST</a>
+      >UPDATE POST</a>
     </div>
   </div>
 </template>
@@ -70,11 +70,14 @@ const getPost = function () {
 
 const updatePost = function () {
   fetch(`http://localhost:3000/posts/${route.params.id}`, {
-    method: 'post',
+    method: 'PATCH',
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ ...post }),
+  })
+  .catch(error => {
+    console.error(error)
   })
 }
 </script>
