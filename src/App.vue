@@ -1,15 +1,21 @@
 <template>
   <div>
-    <div>
+    <div v-if="isAdmin">
       <AdminLayout>
         <RouterView />
       </AdminLayout>
+    </div>
+    <div v-else>
+      <ClientLayout>
+        <RouterView />
+      </ClientLayout>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import AdminLayout from '@/layouts/AdminLayout.vue'
+import ClientLayout from '@/layouts/ClientLayout.vue'
 import { ref } from 'vue'
 import {useRoute, useRouter} from 'vue-router'
 defineOptions({
@@ -26,7 +32,6 @@ router.isReady().then(() => {
     isAdmin.value = routeName.split('.')[0] === 'admin'
   }
 })
-
 
 </script>
 

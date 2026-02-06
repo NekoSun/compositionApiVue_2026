@@ -4,6 +4,17 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
+            path: '/dashboard',
+            component: () => import('@/pages/dashboard/index.vue'),
+            name: 'posts.dashboard'
+        },
+        {
+            path: '/',
+            // path: '/posts',
+            component: () => import('@/pages/pasts/index.vue'),
+            name: 'posts.index'
+        },
+        {
             path: '/admin/dashboard',
             component: () => import('@/pages/admin/dashboard/index.vue'),
             name: 'admin.dashboard.index'
@@ -31,16 +42,6 @@ const router = createRouter({
             component: () => import('@/pages/admin/pasts/edit.vue'),
             name: 'admin.posts.edit'
 
-        },
-        {
-            path: '/dashboard',
-            component: () => import('@/pages/dashboard/index.vue'),
-            name: 'posts.index'
-        },
-        {
-            path: '/posts',
-            component: () => import('@/pages/pasts/index.vue'),
-            name: 'posts.index'
         }
     ]
 })

@@ -5,7 +5,7 @@
         </header>
     </section>
     <section class="flex">
-        <article class="bg-gray-50 w-3/4 p-4"><slot /></article>
+        <article class="bg-gray-50 w-full p-4"><slot /></article>
     </section>
 </template>
 

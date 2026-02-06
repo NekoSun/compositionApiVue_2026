@@ -2,7 +2,7 @@
   <div class="mb4 bg-white border border-gray-200 p-4">
     <div class="md-4">
       <input
-        v-model="post.title"
+        v-model="postStore.post.title"
         type="text"
         class="border border-gray-200 p-4 w-full"
         placeholder="title"
@@ -10,7 +10,7 @@
     </div>
     <div class="md-4">
       <textarea
-        v-model="post.content"
+        v-model="postStore.post.content"
         class="border border-gray-200 p-4 w-full"
         placeholder="content"
       ></textarea>
@@ -26,33 +26,30 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
-
-import type { Post } from '@/types/Post';
+import { usePostStore } from '@/stores/post';
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 defineOptions({
   name: 'Crete'
 })
 
-const post: Post = reactive({
-  id: '',
-  title: '',
-  content: ''
-});
+const router = useRouter();
 
-const storePost = function () {
-  fetch('http://localhost:3000/posts', {
-    method: 'post',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ ...post }),
-  },)
-    .then((res) => {
-      console.log(res);
+onMounted(() =>{
+  postStore.post = {};
+})
 
-    })
-};
+const postStore = usePostStore()
+
+const storePost = async function() {
+    await postStore.storePost();
+    
+    if (postStore.isLoading) {
+      router.push({name: 'admin.posts.index'})
+    }
+}
+
 </script>
 
 <style scoped lang="scss"></style>
