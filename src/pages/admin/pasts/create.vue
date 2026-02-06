@@ -28,16 +28,14 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 
-interface Post {
-  title: string
-  content: string
-};
+import type { Post } from '@/types/Post';
 
 defineOptions({
   name: 'Crete'
 })
 
 const post: Post = reactive({
+  id: '',
   title: '',
   content: ''
 });

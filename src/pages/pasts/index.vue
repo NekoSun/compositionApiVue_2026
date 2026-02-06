@@ -17,7 +17,7 @@
             <td>{{ post.id }}</td>
             <td>{{ post.title }}</td>
             <td>{{ post.content }}</td>
-            <td>{{ post.actions }}</td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -29,12 +29,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
-interface Post {
-  id: number
-  title: string
-  content: string
-  actions?: string
-}
+import type { Post } from '@/types/Post';
 
 defineOptions({
   name: 'pasts'

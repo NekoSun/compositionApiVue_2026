@@ -76,11 +76,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
-interface Post {
-  id: string
-  title: string
-  content: string
-}
+import type { Post } from '@/types/Post';
 
 defineOptions({
   name: 'pasts'

@@ -29,11 +29,7 @@
 import { onMounted, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 
-interface Post {
-  id: number | null
-  title: string
-  content: string
-};
+import type { Post } from '@/types/Post';
 
 defineOptions({
   name: 'Edit'

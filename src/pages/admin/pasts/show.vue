@@ -18,12 +18,7 @@
 import { onMounted, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
-interface Post {
-  id: number | null
-  title: string
-  content: string
-  actions?: string
-}
+import type { Post } from '@/types/Post';
 
 defineOptions({
   name: 'show'
